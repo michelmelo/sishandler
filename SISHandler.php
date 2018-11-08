@@ -1,9 +1,9 @@
 <?php
 
-namespace ServDebt;
+namespace Monolog\Handler;
 
 use Monolog\Logger;
-use Monolog\Handler\AbstractProcessingHandler;
+//use Monolog\Handler\AbstractProcessingHandler;
 
 /**
  * SISHandler is a Monolog Handler capable of dispatching log messages to the SIS - ServDebt Improvement System
@@ -11,7 +11,7 @@ use Monolog\Handler\AbstractProcessingHandler;
  *  your log messages automagically!
  *
  * @author  Tadeu Bento <tadeu.bento@servdebt.pt>
- * @version 1.0
+ * @version 1.0.1
  */
 class SISHandler extends AbstractProcessingHandler
 {

@@ -4,11 +4,11 @@ require "vendor/autoload.php";
 
 use Monolog\Logger;
 use Monolog\Processor\IntrospectionProcessor;
-use ServDebt\SISHandler;
+use Monolog\Handler\SISHandler;
 
 // Adjust your settings
 $apiKey = "SISAPIKey";
-$apiUrl = "SISServerURL";
+$apiUrl = "SISServerURL/api/logs";
 
 // Create a log channel
 $log = new Logger("SISLogExample");
