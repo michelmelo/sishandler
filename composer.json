@@ -1,7 +1,6 @@
 {
   "name": "servdebt/sishandler",
   "type": "monolog-handler",
-  "version": "1.0.1",
   "license": "ServDebt Only",
   "homepage": "https://github.com/servdebt/sishandler",
   "keywords": [
