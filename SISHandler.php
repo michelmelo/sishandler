@@ -47,15 +47,22 @@ class SISHandler extends AbstractProcessingHandler
 	{
 
 		// If IntrospectionProcessor was loaded add the file path and line number
-		if (isset($data["extra"]["line"]) && isset($data["extra"]["file"]))
+		if (isset($data["extra"]["line"]) && isset($data["extra"]["file"]) && empty($data["context"]))
 			$data["message"] = "{$data["extra"]["file"]}:{$data["extra"]["line"]} - {$data["message"]}";
 
 		// Process data
-		$dataSIS = json_encode([
-			"level"       => array_search($data["level_name"], self::$levels),
-			"description" => $data["message"],
-			"message"     => $data["context"]
-		]);
+		$dataSIS = new \stdClass();
+		$dataSIS->level = array_search($data["level_name"], self::$levels);
+		$dataSIS->description = $data["message"];
+
+		// If nothing is passed on the second monolog parameter we should assume the user is
+		// providing an object or something that was parsed by a formatter.
+		if (empty($data["context"]))
+			$dataSIS->message  = $data["message"];
+		else
+			$dataSIS->message =  $data["context"];
+
+		$dataSIS = \json_encode($dataSIS);
 
 		// Prepare headers
 		$headers = [
