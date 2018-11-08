@@ -1,19 +1,7 @@
 {
   "name": "servdebt/sishandler",
   "type": "monolog-handler",
-  "license": "ServDebt Only",
   "homepage": "https://github.com/servdebt/sishandler",
-  "keywords": [
-	"servdebt",
-	"sishandler",
-	"monolog"
-  ],
-  "authors": [
-	{
-	  "name": "TCB13",
-	  "email": "tadeu.bento@servdebt.pt"
-	}
-  ],
   "require": {
 	"monolog/monolog": "^1.24",
 	"ext-json": "*",
