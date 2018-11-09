@@ -3,6 +3,7 @@
 namespace Monolog\Handler;
 
 use Monolog\Logger;
+
 //use Monolog\Handler\AbstractProcessingHandler;
 
 /**
@@ -51,16 +52,19 @@ class SISHandler extends AbstractProcessingHandler
 			$data["message"] = "{$data["extra"]["file"]}:{$data["extra"]["line"]} - {$data["message"]}";
 
 		// Process data
-		$dataSIS = new \stdClass();
+		$dataSIS        = new \stdClass();
 		$dataSIS->level = array_search($data["level_name"], self::$levels);
-		$dataSIS->description = $data["message"];
 
 		// If nothing is passed on the second monolog parameter we should assume the user is
 		// providing an object or something that was parsed by a formatter.
-		if (empty($data["context"]))
-			$dataSIS->message  = $data["message"];
-		else
-			$dataSIS->message =  $data["context"];
+		if (empty($data["context"])) {
+			$dataSIS->message     = $data["message"];
+			$dataSIS->description = rtrim(strtok($data["message"], "\n"));
+		}
+		else {
+			$dataSIS->message     = $data["context"];
+			$dataSIS->description = $data["message"];
+		}
 
 		$dataSIS = \json_encode($dataSIS);
 
