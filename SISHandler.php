@@ -49,7 +49,7 @@ class SISHandler extends AbstractProcessingHandler
 
 		// If IntrospectionProcessor was loaded add the file path and line number
 		if (isset($data["extra"]["line"]) && isset($data["extra"]["file"]) && empty($data["context"]))
-			$data["message"] = "{$data["extra"]["file"]}:{$data["extra"]["line"]} - {$data["message"]}";
+			$data["message"] = "{$data["message"]}";
 
 		// Process data
 		$dataSIS        = new \stdClass();
