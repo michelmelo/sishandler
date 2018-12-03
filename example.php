@@ -3,8 +3,9 @@
 require "vendor/autoload.php";
 
 use Monolog\Logger;
-use Monolog\Processor\IntrospectionProcessor;
 use Monolog\Handler\SISHandler;
+use Monolog\Processor\IntrospectionProcessor;
+use Monolog\Processor\WebProcessor;
 
 // Adjust your settings
 $apiKey = "SISAPIKey";
@@ -16,6 +17,8 @@ $log->pushHandler(new SISHandler($apiUrl, $apiKey));
 
 // Optionally add IntrospectionProcessor to get the file path and line number where the log was generated
 $log->pushProcessor(new IntrospectionProcessor());
+// Optionally add the URL, IP and HTTP Method of the request
+$log->pushProcessor(new WebProcessor());
 
 // Build an array with your own extra error data
 $exampleExtraData = [

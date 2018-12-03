@@ -67,6 +67,10 @@ class SISHandler extends AbstractProcessingHandler
 			$dataSIS->description = $data["message"];
 		}
 
+		// If WebProcessor was loaded add the URL, IP and HTTP Method
+		if (isset($data["extra"]["url"]) && isset($data["extra"]["ip"]) && isset($data["extra"]["http_method"]))
+			$dataSIS->message = "{$data["extra"]["ip"]} - {$data["extra"]["http_method"]} {$data["extra"]["url"]}\n" . $dataSIS->message;
+
 		$dataSIS = \json_encode($dataSIS);
 
 		// Prepare headers
