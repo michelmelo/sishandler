@@ -38,7 +38,7 @@ class SISHandler extends AbstractProcessingHandler
 		parent::__construct($level, $bubble);
 	}
 
-	protected function write(array $record)
+	protected function write(array $record): void
 	{
 		$this->message = $record;
 		$this->makeRequest($this->message);
