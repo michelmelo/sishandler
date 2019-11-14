@@ -78,6 +78,10 @@ class SISHandler extends AbstractProcessingHandler
             }
         }
 
+        if (strlen($dataSIS->message) > 255) {
+            $dataSIS->message = substr($dataSIS->message, 0,252) . "...";
+        }
+
         $dataSIS = json_encode($dataSIS);
 
         // Prepare headers
