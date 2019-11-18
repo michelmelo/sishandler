@@ -67,20 +67,26 @@ class SISHandler extends AbstractProcessingHandler
 
         // If WebProcessor was loaded add the URL, IP and HTTP Method
         if (isset($data["extra"]["url"]) && isset($data["extra"]["ip"]) && isset($data["extra"]["http_method"])) {
-            $context = "{$data["extra"]["ip"]} - {$data["extra"]["http_method"]} {$data["extra"]["url"]}";
+            $context = "{$data["extra"]["ip"]} - {$data["extra"]["http_method"]} {$data["extra"]["url"]}" .PHP_EOL;
             if (is_array($dataSIS->message)) {
                 $dataSIS->message = [
-                    "context" => $context,
                     "message" => $dataSIS->message,
+                    "context" => $context,
                 ];
             } else {
                 $dataSIS->message = $context . \PHP_EOL . $dataSIS->message;
             }
         }
 
-        if (strlen($dataSIS->message) > 255) {
-            $dataSIS->message = substr($dataSIS->message, 0,252) . "...";
+        if (strlen($dataSIS->description) > 255) {
+            $dataSIS->description = substr($dataSIS->description, 0,252) . "...";
         }
+
+        if (isset($dataSIS->message["message"]["trace"])) {
+            $trace = $dataSIS->message["message"]["trace"];
+            unset($dataSIS->message["message"]["trace"]);
+            $dataSIS->message = $trace . PHP_EOL . PHP_EOL . json_encode($dataSIS->message, JSON_PRETTY_PRINT);
+        };
 
         $dataSIS = json_encode($dataSIS);
 
