@@ -1,18 +1,9 @@
 <?php
 
 namespace Monolog\Handler;
-
 use Monolog\Logger;
 
-//use Monolog\Handler\AbstractProcessingHandler;
 
-/**
- * SISHandler is a Monolog Handler capable of dispatching log messages to the SIS - ServDebt Improvement System
- *  You can optionally push Monolog\Processor\IntrospectionProcessor to get line file paths and line numbers in
- *  your log messages automagically!
- *
- * @author  Tadeu Bento <tadeu.bento@servdebt.pt>
- */
 class SISHandler extends AbstractProcessingHandler
 {
     public static $levels = [
