@@ -1,5 +1,5 @@
 {
-  "name": "servdebtdev/sishandler",
+  "name": "servdebt/sishandler",
   "type": "monolog-handler",
   "homepage": "https://github.com/servdebt/sishandler",
   "require": {
