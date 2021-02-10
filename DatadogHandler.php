@@ -3,7 +3,7 @@
 namespace Monolog\Handler;
 use Monolog\Logger;
 
-class DataDogHandler extends AbstractProcessingHandler
+class DatadogHandler extends AbstractProcessingHandler
 {
     public static $levels = [
         0 => "EMERGENCY",
